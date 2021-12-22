@@ -7,6 +7,7 @@ import com.aispeech.dui.dds.DDS
 import com.aispeech.dui.dds.agent.ASREngine
 import com.aispeech.dui.dsk.duiwidget.DuiWidget
 import com.aispeech.idds.*
+import com.yollpoll.arch.log.LogUtils
 import com.yollpoll.arch.util.ToastUtil
 import dagger.hilt.android.qualifiers.ActivityContext
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -83,6 +84,7 @@ class WakeupImpl @Inject constructor(
     @ApplicationContext val context: Context
 ) : IWakeUp {
     override fun enableWakeup(enable: Boolean) {
+        LogUtils.d("dds state : %s", DDS.getInstance().initStatus)
         if (enable) {
             DDS.getInstance().agent.wakeupEngine.enableWakeup()
         } else {

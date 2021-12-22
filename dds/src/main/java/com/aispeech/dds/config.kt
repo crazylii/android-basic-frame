@@ -10,16 +10,16 @@ import java.util.*
  * dds config
  */
 //var androidId: String = Settings.System.getString(getContentResolver(), Settings.Secure.ANDROID_ID)
-const val productId = "279601547"
-const val productKey = "b09011f35fcda7c71dbbdf70c9145bec"
-const val productSecret = "4c3a19e8a54440a753bd193740f299d9"
-const val apiKey = "b6abc538f1dbb6abc538f1db61b847d0"
+const val productId = "279605249"
+const val productKey = "e52538668ae3e5ebd97e05b248518cac"
+const val productSecret = "3ab20e5ab9745fe52f8e438d2a5d360d"
+const val apiKey = "f57a6fda5b5ff57a6fda5b5f61c2ebef"
 const val aliasKey = "test"
 const val deviceId = "deviceId"
 
 var config = DDSConfig().addConfig(DDSConfig.K_DEVICE_ID, deviceId)
     .addConfig(DDSConfig.K_PRODUCT_ID, productId)
-    .addConfig(DDSConfig.K_USER_ID, "userId")
+    .addConfig(DDSConfig.K_USER_ID, "aispeech")
     .addConfig(DDSConfig.K_ALIAS_KEY, aliasKey)
     .addConfig(DDSConfig.K_API_KEY, apiKey)
     .addConfig(DDSConfig.K_PRODUCT_KEY, productKey)
@@ -46,7 +46,7 @@ var config = DDSConfig().addConfig(DDSConfig.K_DEVICE_ID, deviceId)
 
 //唤醒配置项
 // config.addConfig(DDSConfig.K_WAKEUP_ROUTER, "dialog"); //唤醒路由：partner（将唤醒结果传递给partner，不会主动进入对话）、dialog（将唤醒结果传递给dui，会主动进入对话）
-// config.addConfig(DDSConfig.K_WAKEUP_BIN, "/sdcard/wakeup.bin"); //商务定制版唤醒资源的路径。如果开发者对唤醒率有更高的要求，请联系商务申请定制唤醒资源。
+    .addConfig(DDSConfig.K_WAKEUP_BIN, "wakeup_res.bin") //商务定制版唤醒资源的路径。如果开发者对唤醒率有更高的要求，请联系商务申请定制唤醒资源。
 // config.addConfig(DDSConfig.K_ONESHOT_MIDTIME, "500");// OneShot配置：
 // config.addConfig(DDSConfig.K_ONESHOT_ENDTIME, "2000");// OneShot配置：
 
@@ -66,7 +66,7 @@ var config = DDSConfig().addConfig(DDSConfig.K_DEVICE_ID, deviceId)
 // config.addConfig(DDSConfig.K_TTS_DEBUG, "true");  // 用于tts音频调试, 开启后在 "/sdcard/Android/data/包名/cache/tts/" 目录下会自动生成tts音频
 
 // 麦克风阵列配置项
-// config.addConfig(DDSConfig.K_MIC_TYPE, "1"); // 设置硬件采集模组的类型 0：无。默认值。 1：单麦回消 2：线性四麦 3：环形六麦 4：车载双麦 5：家具双麦 6: 环形四麦  7: 新车载双麦
+    .addConfig(DDSConfig.K_MIC_TYPE, "2") // 设置硬件采集模组的类型 0：无。默认值。 1：单麦回消 2：线性四麦 3：环形六麦 4：车载双麦 5：家具双麦 6: 环形四麦  7: 新车载双麦
 // config.addConfig(DDSConfig.K_MIC_ARRAY_AEC_CFG, "/data/aec.bin"); // 麦克风阵列aec资源的磁盘绝对路径,需要开发者确保在这个路径下这个资源存在
 // config.addConfig(DDSConfig.K_MIC_ARRAY_BEAMFORMING_CFG, "/data/beamforming.bin"); // 麦克风阵列beamforming资源的磁盘绝对路径，需要开发者确保在这个路径下这个资源存在
 
@@ -82,4 +82,36 @@ var config = DDSConfig().addConfig(DDSConfig.K_DEVICE_ID, deviceId)
 // asrpp配置荐
 // config.addConfig(DDSConfig.K_USE_GENDER, "true");// 使用性别识别
 // config.addConfig(DDSConfig.K_USE_AGE, "true");// 使用年龄识别
+
+// config.addConfig(DDSConfig.K_ONESHOT_MIDTIME, "500");// OneShot配置：
+// config.addConfig(DDSConfig.K_ONESHOT_ENDTIME, "2000");// OneShot配置：
+
+//识别配置项
+// config.addConfig(DDSConfig.K_ASR_ENABLE_PUNCTUATION, "false"); //识别是否开启标点
+// config.addConfig(DDSConfig.K_ASR_ROUTER, "dialog"); //识别路由：partner（将识别结果传递给partner，不会主动进入语义）、dialog（将识别结果传递给dui，会主动进入语义）
+// config.addConfig(DDSConfig.K_VAD_TIMEOUT, 5000); // VAD静音检测超时时间，默认8000毫秒
+// config.addConfig(DDSConfig.K_ASR_ENABLE_TONE, "true"); // 识别结果的拼音是否带音调
+// config.addConfig(DDSConfig.K_ASR_TIPS, "true"); // 识别完成是否播报提示音
+// config.addConfig(DDSConfig.K_VAD_BIN, "/sdcard/vad.bin"); // 商务定制版VAD资源的路径。如果开发者对VAD有更高的要求，请联系商务申请定制VAD资源。
+
+// 调试配置项
+//         config.addConfig(DDSConfig.K_CACHE_PATH, "/sdcard/cache"); // 调试信息保存路径,如果不设置则保存在默认路径"/sdcard/Android/data/包名/cache"
+//        config.addConfig(DDSConfig.K_WAKEUP_DEBUG, "false"); // 用于唤醒音频调试, 开启后在 "/sdcard/Android/data/包名/cache" 目录下会生成唤醒音频
+// config.addConfig(DDSConfig.K_VAD_DEBUG, "true"); // 用于过vad的音频调试, 开启后在 "/sdcard/Android/data/包名/cache" 目录下会生成过vad的音频
+//         config.addConfig(DDSConfig.K_ASR_DEBUG, "false"); // 用于识别音频调试, 开启后在 "/sdcard/Android/data/包名/cache" 目录下会生成识别音频
+// config.addConfig(DDSConfig.K_TTS_DEBUG, "true");  // 用于tts音频调试, 开启后在 "/sdcard/Android/data/包名/cache/tts/" 目录下会自动生成tts音频
+
+// 麦克风阵列配置项
+//        config.addConfig(DDSConfig.K_AUDIO_SOURCE, "6");
+//        config.addConfig(DDSConfig.K_AUDIO_CHANNEL_COUNT, "6");
+//        config.addConfig(DDSConfig.K_AUDIO_CHANNEL_CONF, AudioFormat.CHANNEL_IN_MONO);
+
+
+    .addConfig(DDSConfig.K_NEAR_WAKEUP_MDS_BIN, "mds_offline_ch4_4_0_config_35mm_doaScanOff_20210906_v2.70.0.25.bin") // 按照实际路径和命名
+
+    .addConfig(DDSConfig.K_MIC_ARRAY_BEAMFORMING_CFG, "sspe_ula_wkp_35mm_ch4_mic4_v2.0.0.100.bin") // 按照实际路径和命名
+
+    .addConfig(DDSConfig.K_USE_NEAR_WAKEUP, "true") //必须打开才会走就近唤醒逻辑，否则还是按照普通唤醒
+
+    .addConfig(DDSConfig.K_NETWORKMANAGER_DELAY, "1000") // delay 为毫秒数，建议配置1000ms
 

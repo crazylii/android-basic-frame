@@ -1,7 +1,3 @@
 package com.aispeech.idds
 
-/**
- * Created by spq on 2021/12/16
- */
-class DuiUpdate {
-}
+const val SYS_RESOURCE_UPDATED = "sys.resource.updated"

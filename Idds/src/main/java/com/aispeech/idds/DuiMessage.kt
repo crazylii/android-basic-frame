@@ -11,6 +11,7 @@ const val CONTEXT_WIDGET_LIST = "context.widget.list"
 const val CONTEXT_WIDGET_WEB = "context.widget.web"
 const val CONTEXT_WIDGET_MEDIA = "context.widget.media"
 const val CONTEXT_WIDGET_CUSTOM = "context.widget.custom"
+const val DM_OUTPUT = "dm.output"
 
 val messageList = arrayOf(
     SYS_DIALOG_STATE,
@@ -20,5 +21,6 @@ val messageList = arrayOf(
     CONTEXT_WIDGET_LIST,
     CONTEXT_WIDGET_WEB,
     CONTEXT_WIDGET_MEDIA,
-    CONTEXT_WIDGET_CUSTOM
+    CONTEXT_WIDGET_CUSTOM,
+    DM_OUTPUT
 )

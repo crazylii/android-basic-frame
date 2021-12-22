@@ -12,12 +12,14 @@ object ObserverManager {
         DuiCommandObserver.register()
         DuiMessageObserver.register()
         DuiNativeApiObserver.register()
+        DuiUpdateObserver.register()
     }
 
     fun unRegisterAll() {
         DuiCommandObserver.unRegister()
         DuiMessageObserver.unRegister()
         DuiNativeApiObserver.unRegister()
+        DuiUpdateObserver.unregister()
     }
 }
 
