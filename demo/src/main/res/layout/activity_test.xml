@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <!--warning:don't change the name of variable,or lego can't work-->
+        <variable
+            name="viewModel"
+            type="com.aispeech.demo.viewmodel.TestViewModel" />
+
+        <variable
+            name="view"
+            type="com.aispeech.demo.view.TestActivity" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:bind="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{()->viewModel.initDDS()}"
+            android:text="initDDS"
+            android:textAllCaps="false" />
+
+        <TextView
+            android:id="@+id/tv_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</layout>

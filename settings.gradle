@@ -1,0 +1,13 @@
+rootProject.name = "Arch"
+include ':app'
+
+include ':annotationProcessor'
+include ':annotation'
+include ':arch'
+include ':framework'
+//include ':widget'
+//include ':extensions'
+//include ':demo'
+include ':dds'
+include ':demo'
+include ':Idds'
