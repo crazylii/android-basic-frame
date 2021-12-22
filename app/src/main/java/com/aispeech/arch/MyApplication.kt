@@ -18,7 +18,7 @@ import dagger.hilt.android.HiltAndroidApp
 class MyApplication : BaseApplication() {
     override fun onCreate() {
         super.onCreate()
-        LogUtils.init(this, "demo", true)
+        LogUtils.init(this)
         registerRouter()
     }
 

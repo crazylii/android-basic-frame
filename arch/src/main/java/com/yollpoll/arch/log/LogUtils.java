@@ -30,6 +30,18 @@ public class LogUtils {
         });
     }
 
+    public static void init(Context context) {
+        FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()
+                .build();
+        final boolean isDebug = ((context.getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0);
+        Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy) {
+            @Override
+            public boolean isLoggable(int priority, String tag) {
+                return isDebug;
+            }
+        });
+    }
+
     public static void d(String message, Object... args) {
         Logger.d(message, args);
     }
