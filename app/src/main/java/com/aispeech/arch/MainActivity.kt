@@ -1,5 +1,6 @@
 package com.aispeech.arch
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -8,8 +9,9 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aispeech.arch.databinding.ActivityMainBinding
 import com.aispeech.arch.databinding.ItemPagingTestBinding
+import com.aispeech.arch.view.SplashActivity
 import com.aispeech.dds.DDSService
-import com.aispeech.dds.DDsActivity
+import com.aispeech.dds.observer.ObserverManager
 import com.aispeech.dui.dds.DDS
 import com.aispeech.framework.extensions.shortToast
 import com.aispeech.framework.fast.FastActivity
@@ -17,9 +19,9 @@ import com.aispeech.framework.paging.BasePagingDataAdapter
 import com.aispeech.idds.DDS_MSG_INIT_FINISH
 import com.yollpoll.annotation.annotation.MethodReference
 import com.yollpoll.annotation.annotation.OnMessage
-import com.yollpoll.arch.annotation.ContentView
 import com.yollpoll.arch.annotation.PermissionAuto
 import com.yollpoll.arch.annotation.ViewModel
+import com.yollpoll.arch.log.LogUtils
 import com.yollpoll.arch.router.Dispatcher
 import com.yollpoll.arch.router.RouterScheme
 import com.yollpoll.arch.router.SchemeBuilder
@@ -27,7 +29,6 @@ import com.yollpoll.arch.util.ToastUtil
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 private const val TAG = "MainActivity"
 
@@ -42,6 +43,8 @@ class MainActivity : FastActivity<ActivityMainBinding, MainViewModel>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loadFlowData()
+        ToastUtil.showShortToast("DDS初始化")
+        DDSService.start(context = this)
     }
 
     /////////////////mvvm//////////////////////
@@ -108,21 +111,35 @@ class MainActivity : FastActivity<ActivityMainBinding, MainViewModel>() {
             Pair("key", "value"),
             Pair("key2", "value2")
         )
-        val url = SchemeBuilder()
-            .scheme(RouterScheme.NATIVE)
-            .host("demo")
-            .module("test")
-            .params(params)
-            .build()
-        url.shortToast()
-        Dispatcher.dispatch(url, context)
+//        val url = SchemeBuilder()
+//            .scheme(RouterScheme.NATIVE)
+//            .host("demo")
+//            .module("test")
+//            .params(params)
+//            .build()
+//        val url = SchemeBuilder()
+//            .scheme(RouterScheme.NATIVE)
+//            .host("dds")
+//            .module("initDDS")
+//            .params(params)
+//            .build()
+//        url.shortToast()
+//        Dispatcher.dispatch(url, context)
+
+//        ToastUtil.showShortToast("DDS初始化")
+//        DDSService.start(context = this)
 //        Dispatcher.dispatch("native://dds?module=initDDS", context)
+
+        startActivity(Intent(this, SplashActivity::class.java))
     }
 
     @OnMessage(key = DDS_MSG_INIT_FINISH)
     fun onDDSInitFinish() {
+        LogUtils.d("DDS初始化成功，开始调用唤醒， 跳转轮播")
+        ObserverManager.registerAll()
         ToastUtil.showShortToast("DDS初始化成功")
         DDS.getInstance().agent.wakeupEngine.enableWakeup()
+        startActivity(Intent(this, SplashActivity::class.java))
     }
 
 }

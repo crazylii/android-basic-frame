@@ -1,12 +1,9 @@
-package com.aispeech.medicalcall.net
+package com.aispeech.arch.net
 
 import com.aispeech.framework.net.http.RetrofitFactory
 import com.aispeech.framework.net.http.RetrofitIntercept
-import com.squareup.moshi.Moshi
-import com.yollpoll.myframework.net.BASE_URL
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
 import java.io.Serializable
 
 /**

@@ -40,7 +40,7 @@ object DuiUpdateObserver : MessageObserver{
             }
 
             override fun onDownloadProgress(p0: Float) {
-                LogUtils.i("onDownloadProgress dds 资源 progress:$p0")
+//                LogUtils.i("onDownloadProgress dds 资源 progress:$p0")
             }
 
             override fun onError(p0: Int, p1: String?) {

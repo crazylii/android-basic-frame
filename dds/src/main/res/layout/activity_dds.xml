@@ -6,17 +6,17 @@
     <data>
         <variable
             name="view"
-            type="com.aispeech.dds.DDsActivity" />
+            type="com.aispeech.dds.view.DDsActivity" />
         <variable
             name="viewModel"
-            type="com.aispeech.dds.DDSVM" />
+            type="com.aispeech.dds.view.DDSVM" />
     </data>
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".DDsActivity">
+        tools:context=".view.DDsActivity">
 
         <Button
             android:layout_width="wrap_content"

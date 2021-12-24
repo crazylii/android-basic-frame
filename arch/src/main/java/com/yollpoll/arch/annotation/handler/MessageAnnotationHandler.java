@@ -6,6 +6,7 @@ import androidx.lifecycle.LifecycleOwner;
 
 
 import com.yollpoll.annotation.annotation.OnMessage;
+import com.yollpoll.arch.log.LogUtils;
 import com.yollpoll.arch.message.liveeventbus.LiveEventBus;
 import com.yollpoll.arch.message.liveeventbus.NonType;
 import com.yollpoll.arch.message.liveeventbus.ObserverWrapper;
@@ -91,9 +92,9 @@ public class MessageAnnotationHandler {
                         try {
                             method.invoke(annotationOwner);
                         } catch (IllegalAccessException e) {
-                            e.printStackTrace();
+                            LogUtils.e("反射方法调用出错：" + e.toString());
                         } catch (InvocationTargetException e) {
-                            e.printStackTrace();
+                            LogUtils.e("反射方法调用出错：" + e.toString());
                         }
                     }
 

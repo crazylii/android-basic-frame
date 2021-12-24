@@ -1,15 +1,12 @@
-package com.aispeech.dds
+package com.aispeech.dds.view
 
 import android.app.Application
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.os.Process
 import android.view.View
+import com.aispeech.dds.DDSService
+import com.aispeech.dds.R
+import com.aispeech.dds.WakeupImpl
 import com.aispeech.dds.databinding.ActivityDdsBinding
-import com.aispeech.dui.dds.DDS
-import com.aispeech.framework.extensions.shortToast
 import com.aispeech.framework.fast.FastActivity
-import com.aispeech.framework.fast.FastApplication
 import com.aispeech.framework.fast.FastViewModel
 import com.aispeech.idds.DDS_MSG_INIT_FINISH
 import com.yollpoll.annotation.annotation.OnMessage

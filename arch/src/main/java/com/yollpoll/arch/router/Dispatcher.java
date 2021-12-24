@@ -68,13 +68,12 @@ public class Dispatcher {
      * @param onBackListener  请求完成后的回调
      */
     public static void dispatch(final String url, final Context context, final OnBackListener onBackListener) {
-        Handler handler = new Handler(Looper.getMainLooper());
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                realDispatch(url, context, onBackListener);
-            }
-        });
+        if (Looper.getMainLooper().getThread() == Thread.currentThread()) {
+            realDispatch(url, context, onBackListener);
+        } else {
+            Handler handler = new Handler(Looper.getMainLooper());
+            handler.post(() -> realDispatch(url, context, onBackListener));
+        }
     }
     public static void realDispatch(String url, Context context, OnBackListener onBackListener) {
         try {

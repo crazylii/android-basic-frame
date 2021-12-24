@@ -1,12 +1,8 @@
 package com.aispeech.dds
 
 import android.content.Context
-import android.util.Log
+import com.aispeech.dds.view.DDsActivity
 import com.aispeech.framework.extensions.startActivity
-import com.aispeech.framework.extensions.toJson
-import com.aispeech.framework.extensions.toMapJson
-import com.yollpoll.arch.log.LogUtils
-import com.yollpoll.arch.message.liveeventbus.LiveEventBus
 import com.yollpoll.arch.router.OnBackListener
 import com.yollpoll.arch.router.OnDispatchListener
 import java.util.HashMap

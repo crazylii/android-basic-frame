@@ -1,7 +1,6 @@
 package com.aispeech.arch
 
 import android.app.Application
-import android.service.controls.actions.CommandAction
 import android.util.Log
 import androidx.databinding.Bindable
 import androidx.lifecycle.viewModelScope
@@ -10,22 +9,14 @@ import com.aispeech.framework.extensions.*
 import com.aispeech.framework.fast.FastViewModel
 import com.aispeech.framework.paging.BasePagingSource
 import com.aispeech.framework.paging.getCommonPager
-import com.aispeech.idds.IDDS
-import com.aispeech.medicalcall.net.HttpServiceFactory
+import com.aispeech.arch.net.HttpServiceFactory
+import com.aispeech.arch.repository.MainRepository
 import com.squareup.moshi.JsonClass
 import com.yollpoll.arch.annotation.PreExecute
-import com.yollpoll.arch.base.BaseApplication
-import com.yollpoll.arch.base.BaseViewModel
-import com.yollpoll.arch.binding.bindingwrapper.command.BindingAction
 import com.yollpoll.arch.binding.bindingwrapper.command.BindingCommand
-import com.yollpoll.arch.log.LogUtils
 import com.yollpoll.arch.message.MessageManager
-import com.yollpoll.myframework.net.HttpService
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
+import com.aispeech.arch.net.HttpService
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
 /**
  * Created by spq on 2021/11/30
