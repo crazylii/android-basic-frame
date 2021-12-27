@@ -2,17 +2,12 @@ package com.aispeech.demo.view
 
 import android.util.Log
 import androidx.activity.viewModels
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory
-import androidx.lifecycle.ViewModelStoreOwner
 import com.aispeech.demo.R
 import com.aispeech.demo.databinding.ActivityTestBinding
 import com.aispeech.demo.viewmodel.TestViewModel
 import com.aispeech.framework.fast.FastActivity
 import com.aispeech.idds.*
 import com.yollpoll.annotation.annotation.OnMessage
-import com.yollpoll.arch.annotation.ViewModel
-import com.yollpoll.arch.annotation.handler.AnnotationHandler
 import com.yollpoll.arch.util.ToastUtil
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject

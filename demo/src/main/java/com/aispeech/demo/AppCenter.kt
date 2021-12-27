@@ -1,7 +1,10 @@
 package com.aispeech.demo
 
 import android.content.Context
-import com.aispeech.idds.*
+import com.aispeech.idds.IAsr
+import com.aispeech.idds.IDDS
+import com.aispeech.idds.ITts
+import com.aispeech.idds.IWakeUp
 import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
 import dagger.hilt.android.EntryPointAccessors
