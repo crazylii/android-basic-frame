@@ -4,7 +4,6 @@ import com.google.gson.annotations.SerializedName;
 import com.squareup.moshi.JsonClass;
 
 import java.util.List;
-@JsonClass(generateAdapter = true)
 public class TopicListBean {
     @SerializedName("code")
     private Integer code;

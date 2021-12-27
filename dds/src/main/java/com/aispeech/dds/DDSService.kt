@@ -24,7 +24,7 @@ import com.yollpoll.arch.util.ToastUtil
 /**
  * Created by spq on 2021/12/14
  */
-class DDSService : Service() {
+internal class DDSService : Service() {
     companion object {
         const val TAG = "DdsService"
         private var isStarted = false

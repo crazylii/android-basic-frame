@@ -1,6 +1,7 @@
 package com.aispeech.arch
 
 import android.app.Application
+import android.content.Context
 import android.util.Log
 import androidx.databinding.Bindable
 import androidx.lifecycle.viewModelScope
@@ -16,12 +17,23 @@ import com.yollpoll.arch.annotation.PreExecute
 import com.yollpoll.arch.binding.bindingwrapper.command.BindingCommand
 import com.yollpoll.arch.message.MessageManager
 import com.aispeech.arch.net.HttpService
+import com.aispeech.idds.IDDS
+import com.aispeech.idds.IWakeUp
+import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /**
  * Created by spq on 2021/11/30
  */
-class MainViewModel(application: Application) : FastViewModel(application) {
+@HiltViewModel
+class MainViewModel @Inject constructor (@ApplicationContext application: Context) : FastViewModel(application as Application) {
+    @Inject
+    lateinit var idds: IDDS
+    @Inject
+    lateinit var iWakeUp: IWakeUp
+
     ////////////////////////////////mvvm框架////////////////////////////////
     @Bindable
     var times = 0

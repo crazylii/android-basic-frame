@@ -1,17 +1,11 @@
 package com.aispeech.dds
 
 import android.content.Context
-import com.aispeech.dds.observer.DuiCommandObserver
-import com.aispeech.dds.observer.DuiMessageObserver
 import com.aispeech.dui.dds.DDS
 import com.aispeech.dui.dds.agent.ASREngine
-import com.aispeech.dui.dsk.duiwidget.DuiWidget
 import com.aispeech.idds.*
 import com.yollpoll.arch.log.LogUtils
-import com.yollpoll.arch.util.ToastUtil
-import dagger.hilt.android.qualifiers.ActivityContext
 import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.flow.Flow
 import org.json.JSONObject
 import javax.inject.Inject
 

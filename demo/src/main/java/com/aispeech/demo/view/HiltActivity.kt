@@ -1,6 +1,5 @@
 package com.aispeech.demo.view
 
-import androidx.activity.viewModels
 import androidx.databinding.ViewDataBinding
 import com.aispeech.framework.fast.FastActivity
 import com.aispeech.framework.fast.FastViewModel

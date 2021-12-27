@@ -14,8 +14,8 @@ import com.aispeech.arch.bean.TopicListBean
 import com.aispeech.arch.databinding.ActivityTopicBinding
 import com.aispeech.arch.repository.MSG_TOPIC_LIST_SUCCESS
 import com.aispeech.arch.viewmode.TopicViewMode
-import com.aispeech.framework.extensions.toJson
 import com.aispeech.framework.fast.FastActivity
+import com.google.gson.Gson
 import com.yollpoll.annotation.annotation.OnMessage
 import com.yollpoll.arch.log.LogUtils
 import dagger.hilt.android.AndroidEntryPoint
@@ -48,10 +48,10 @@ class TopicActivity : FastActivity<ActivityTopicBinding, TopicViewMode>() {
 
     @OnMessage(key = MSG_TOPIC_LIST_SUCCESS)
     fun onTopicData(topicList: TopicListBean) {
-        LogUtils.d(topicList.toJson())
+        LogUtils.d(Gson().toJson(topicList))
     }
 
-    class CusAdapter: BaseAdapter() {
+    class CusAdapter @Inject constructor(): BaseAdapter() {
 
         override fun getCount(): Int {
             TODO("Not yet implemented")
