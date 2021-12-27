@@ -11,3 +11,5 @@ val BASE_URL = if (IS_DEV) master_domain else prod_domain
 const val FORUM_LIST = "Api/getForumList"
 
 const val SPLASH_BANNER_LIST = "/v1/app/rotation/list"
+//获取主题页列表资源
+const val TOPIC_LIST_GET = "/v1/app/content/list"

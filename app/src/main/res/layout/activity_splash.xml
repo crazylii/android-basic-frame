@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.stx.xhb.androidx.XBanner
+            android:id="@+id/x_banner_id"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:isAutoPlay="true"
+            app:AutoPlayTime="10000"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
