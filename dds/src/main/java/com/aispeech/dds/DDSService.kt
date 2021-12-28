@@ -90,9 +90,17 @@ internal class DDSService : Service() {
                     MessageManager.getInstance().sendEmptyMessage(DDS_MSG_INIT_COMPLETE)
                     LogUtils.d("dds 初始化 initStatus：${DDS.getInstance().initStatus}")
 
-                    //进行授权
+                    //检查授权
                     try {
-                        DDS.getInstance().doAuth()
+                        if (!DDS.getInstance().isAuthSuccess){
+                            //新版内核库无需手动调起认证
+//                            DDS.getInstance().doAuth()
+                            LogUtils.e("dds认证不成功")
+                        } else {
+                            LogUtils.d("dds初始化 isAuthSuccess")
+                            MessageManager.getInstance().sendEmptyMessage(DDS_MSG_AUTH_SUCCESS)
+                            MessageManager.getInstance().sendEmptyMessage(DDS_MSG_INIT_FINISH)
+                        }
                     } catch (e: DDSNotInitCompleteException) {
                         LogUtils.e(e.toString())
                     }
@@ -111,7 +119,7 @@ internal class DDSService : Service() {
             override fun onAuthSuccess() {
                 LogUtils.d("dds初始化 isAuthSuccess")
                 MessageManager.getInstance().sendEmptyMessage(DDS_MSG_AUTH_SUCCESS)
-                MessageManager.getInstance().sendEmptyMessage(DDS_MSG_INIT_FINISH)
+//                MessageManager.getInstance().sendEmptyMessage(DDS_MSG_INIT_FINISH)
             }
 
             override fun onAuthFailed(errorId: String?, error: String?) {
