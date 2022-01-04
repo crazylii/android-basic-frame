@@ -1,22 +1,17 @@
 package com.yollpoll.arch.annotation.handler;
 
 import android.text.TextUtils;
-
 import androidx.lifecycle.LifecycleOwner;
-
-
 import com.yollpoll.annotation.annotation.OnMessage;
 import com.yollpoll.arch.log.LogUtils;
 import com.yollpoll.arch.message.liveeventbus.LiveEventBus;
 import com.yollpoll.arch.message.liveeventbus.NonType;
 import com.yollpoll.arch.message.liveeventbus.ObserverWrapper;
-
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
-
 /**
  * Created by spq on 2021/3/2
  * OnMessage 注解的收集和处理
@@ -42,8 +37,8 @@ public class MessageAnnotationHandler {
      * @param annotationOwner
      */
     public void handleMethodAnnotation(Object annotationOwner) {
-        if (!(annotationOwner instanceof LifecycleOwner))
-            return;
+//        if (!(annotationOwner instanceof LifecycleOwner))
+//            return;
         if(null==mAnnotations)
             return;
         for (Map.Entry<Method, OnMessage> entry : mAnnotations.entrySet()) {
@@ -58,51 +53,101 @@ public class MessageAnnotationHandler {
             }
             if (parms.length == 1) {
                 Class<?> clz = parms[0];
-                LiveEventBus.use(key, clz).observe((LifecycleOwner) annotationOwner, new ObserverWrapper() {
-                    @Override
-                    public boolean isSticky() {
-                        return onMessage.stick();
-                    }
-
-                    @Override
-                    public void onChanged(Object value) {
-                        try {
-                            method.invoke(annotationOwner, value);
-                        } catch (IllegalAccessException e) {
-                            e.printStackTrace();
-                        } catch (InvocationTargetException e) {
-                            e.printStackTrace();
+                if (annotationOwner instanceof LifecycleOwner) {
+                    LiveEventBus.use(key, clz).observe((LifecycleOwner) annotationOwner, new ObserverWrapper() {
+                        @Override
+                        public boolean isSticky() {
+                            return onMessage.stick();
                         }
-                    }
 
-                    @Override
-                    public boolean mainThread() {
-                        return onMessage.mainThread();
-                    }
-                });
+                        @Override
+                        public void onChanged(Object value) {
+                            try {
+                                method.invoke(annotationOwner, value);
+                            } catch (IllegalAccessException e) {
+                                e.printStackTrace();
+                            } catch (InvocationTargetException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        @Override
+                        public boolean mainThread() {
+                            return onMessage.mainThread();
+                        }
+                    });
+                } else {
+                    LiveEventBus.use(key, clz).observeForever(new ObserverWrapper() {
+                        @Override
+                        public boolean isSticky() {
+                            return onMessage.stick();
+                        }
+
+                        @Override
+                        public void onChanged(Object value) {
+                            try {
+                                method.invoke(annotationOwner, value);
+                            } catch (IllegalAccessException e) {
+                                e.printStackTrace();
+                            } catch (InvocationTargetException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        @Override
+                        public boolean mainThread() {
+                            return onMessage.mainThread();
+                        }
+                    });
+                }
             } else {
-                LiveEventBus.use(key, NonType.class).observe((LifecycleOwner) annotationOwner, new ObserverWrapper<NonType>() {
-                    @Override
-                    public boolean isSticky() {
-                        return onMessage.stick();
-                    }
-
-                    @Override
-                    public void onChanged(NonType value) {
-                        try {
-                            method.invoke(annotationOwner);
-                        } catch (IllegalAccessException e) {
-                            LogUtils.e("反射方法调用出错：" + e.toString());
-                        } catch (InvocationTargetException e) {
-                            LogUtils.e("反射方法调用出错：" + e.toString());
+                if (annotationOwner instanceof LifecycleOwner) {
+                    LiveEventBus.use(key, NonType.class).observe((LifecycleOwner) annotationOwner, new ObserverWrapper<NonType>() {
+                        @Override
+                        public boolean isSticky() {
+                            return onMessage.stick();
                         }
-                    }
 
-                    @Override
-                    public boolean mainThread() {
-                        return onMessage.mainThread();
-                    }
-                });
+                        @Override
+                        public void onChanged(NonType value) {
+                            try {
+                                method.invoke(annotationOwner);
+                            } catch (IllegalAccessException e) {
+                                LogUtils.e("反射方法调用出错：" + e.toString());
+                            } catch (InvocationTargetException e) {
+                                LogUtils.e("反射方法调用出错：" + e.toString());
+                            }
+                        }
+
+                        @Override
+                        public boolean mainThread() {
+                            return onMessage.mainThread();
+                        }
+                    });
+                } else {
+                    LiveEventBus.use(key, NonType.class).observeForever(new ObserverWrapper<NonType>() {
+                        @Override
+                        public boolean isSticky() {
+                            return onMessage.stick();
+                        }
+
+                        @Override
+                        public void onChanged(NonType value) {
+                            try {
+                                method.invoke(annotationOwner);
+                            } catch (IllegalAccessException e) {
+                                LogUtils.e("反射方法调用出错：" + e.toString());
+                            } catch (InvocationTargetException e) {
+                                LogUtils.e("反射方法调用出错：" + e.toString());
+                            }
+                        }
+
+                        @Override
+                        public boolean mainThread() {
+                            return onMessage.mainThread();
+                        }
+                    });
+                }
             }
 
         }

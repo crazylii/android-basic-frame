@@ -1,25 +1,25 @@
 package com.aispeech.arch
 
 import com.aispeech.dds.DDSRouterManager
-import com.aispeech.dds.observer.DuiCommandObserver
-import com.aispeech.dds.observer.DuiMessageObserver
-import com.aispeech.dds.observer.DuiNativeApiObserver
 import com.aispeech.demo.TestModuleManager
 import com.yollpoll.arch.base.BaseApplication
 import com.yollpoll.arch.log.LogUtils
 import com.yollpoll.arch.router.Dispatcher
-import com.yollpoll.arch.router.OnDispatchListener
 import dagger.hilt.android.HiltAndroidApp
+import javax.inject.Inject
 
 /**
  * Created by spq on 2021/11/30
  */
 @HiltAndroidApp
 class MyApplication : BaseApplication() {
+    @Inject
+    lateinit var ddsMessageHandler : DDSMessageHandler
     override fun onCreate() {
         super.onCreate()
         LogUtils.init(this)
         registerRouter()
+        ddsMessageHandler.init()
     }
 
     /**

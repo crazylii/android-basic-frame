@@ -106,13 +106,13 @@ internal class DDSService : Service() {
                     }
                 } else {
                     //缺少资源包，初始化不完整
-                    LogUtils.d("dds 缺少资源包，初始化不完整")
+                    LogUtils.e("dds 缺少资源包，初始化不完整")
                     MessageManager.getInstance().sendEmptyMessage(DDS_MSG_INIT_INCOMPLETE)
                 }
             }
 
             override fun onError(what: Int, msg: String?) {
-                LogUtils.d("onError: 初始化失败:$msg")
+                LogUtils.e("onError: 初始化失败:$msg")
                 MessageManager.getInstance().sendEmptyMessage(DDS_MSG_INIT_ERROR)
             }
         }, object : DDSAuthListener {
@@ -123,7 +123,7 @@ internal class DDSService : Service() {
             }
 
             override fun onAuthFailed(errorId: String?, error: String?) {
-                LogUtils.d("DDS授权失败:${error} 错误码 $errorId")
+                LogUtils.e("DDS授权失败:${error} 错误码 $errorId")
                 ToastUtil.showShortToast("DDS授权失败:${error} 错误码 $errorId")
                 MessageManager.getInstance().sendEmptyMessage(DDS_MSG_AUTH_FAILED)
                 //进行授权
